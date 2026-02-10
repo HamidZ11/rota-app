@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserRole } from "../../lib/user-role";
 import { supabase } from "../../lib/supabase";
+import { one } from "../../lib/supabase-join";
 import { useRestaurant } from "../../lib/restaurant-context";
 
 type StaffRow = {
@@ -119,20 +120,23 @@ export default function SwapsPage() {
     );
 
     setSwaps(
-      (swapData ?? []).map((row) => ({
-        id: row.id,
-        status: row.status,
-        createdAt: row.created_at,
-        requesterStaffId: row.requested_by ?? null,
-        targetStaffId: row.requested_with ?? null,
-        shift: {
-          id: row.shift?.id ?? "",
-          startTime: row.shift?.start_time ?? "",
-          endTime: row.shift?.end_time ?? "",
-          role: row.shift?.role ?? "",
-          staffId: row.shift?.staff_id ?? null,
-        },
-      }))
+      (swapData ?? []).map((row) => {
+        const shift = one(row.shift);
+        return {
+          id: row.id,
+          status: row.status,
+          createdAt: row.created_at,
+          requesterStaffId: row.requested_by ?? null,
+          targetStaffId: row.requested_with ?? null,
+          shift: {
+            id: shift?.id ?? "",
+            startTime: shift?.start_time ?? "",
+            endTime: shift?.end_time ?? "",
+            role: shift?.role ?? "",
+            staffId: shift?.staff_id ?? null,
+          },
+        };
+      })
     );
     setFetching(false);
   }, [currentRestaurantId]);

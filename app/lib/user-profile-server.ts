@@ -2,8 +2,8 @@ import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { type UserProfile, type UserRole } from "./user-profile";
 
-const getServerSupabase = () => {
-  const cookieStore = cookies();
+const getServerSupabase = async () => {
+  const cookieStore = await cookies();
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -24,7 +24,7 @@ const getServerSupabase = () => {
 };
 
 export const getUserProfileServer = async (): Promise<UserProfile | null> => {
-  const supabaseServer = getServerSupabase();
+  const supabaseServer = await getServerSupabase();
   const {
     data: { user },
   } = await supabaseServer.auth.getUser();

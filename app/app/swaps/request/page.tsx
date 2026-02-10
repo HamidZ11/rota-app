@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserRole } from "../../../lib/user-role";
 import { supabase } from "../../../lib/supabase";
+import { one } from "../../../lib/supabase-join";
 import { useRestaurant } from "../../../lib/restaurant-context";
 
 type ShiftOption = {
@@ -119,7 +120,7 @@ export default function SwapRequestPage() {
       supabase
         .from("swap_requests")
         .select(
-          "id, status, shift:shift_id ( start_time, end_time, role ), requested_with"
+          "id, status, shift:shift_id ( id, start_time, end_time, role ), requested_with"
         )
         .eq("requested_by", staffId)
         .eq("restaurant_id", currentRestaurantId)
@@ -140,7 +141,7 @@ export default function SwapRequestPage() {
     const pendingShiftIds = new Set(
       (swapData ?? [])
         .filter((item) => item.status === "pending")
-        .map((item) => item.shift?.id ?? "")
+        .map((item) => one(item.shift)?.id ?? "")
     );
 
     setShiftOptions(
@@ -171,20 +172,19 @@ export default function SwapRequestPage() {
       (staffData ?? []).map((person) => [person.id, person.name])
     );
     setSwapRequests(
-      (swapData ?? []).map((item) => ({
-        id: item.id,
-        status: item.status,
-        shiftLabel: item.shift
-          ? formatShiftLabel(
-              item.shift.start_time,
-              item.shift.end_time,
-              item.shift.role
-            )
-          : "Shift",
-        requestedWithName: item.requested_with
-          ? staffNameById.get(item.requested_with) ?? "Staff member"
-          : null,
-      }))
+      (swapData ?? []).map((item) => {
+        const shift = one(item.shift);
+        return {
+          id: item.id,
+          status: item.status,
+          shiftLabel: shift
+            ? formatShiftLabel(shift.start_time, shift.end_time, shift.role)
+            : "Shift",
+          requestedWithName: item.requested_with
+            ? staffNameById.get(item.requested_with) ?? "Staff member"
+            : null,
+        };
+      })
     );
 
     setFetching(false);

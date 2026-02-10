@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserRole } from "../../lib/user-role";
 import { supabase } from "../../lib/supabase";
+import { one } from "../../lib/supabase-join";
 import jsPDF from "jspdf";
 import { useRestaurant } from "../../lib/restaurant-context";
 
@@ -288,10 +289,13 @@ export default function RotaPage() {
     if (error || !data) return;
     setProfiles(
       data
-        .map((row) => ({
-          id: row.profile?.id ?? row.user_id,
-          email: row.profile?.email ?? null,
-        }))
+        .map((row) => {
+          const profile = one(row.profile);
+          return {
+            id: profile?.id ?? row.user_id,
+            email: profile?.email ?? null,
+          };
+        })
         .filter((row) => Boolean(row.id))
     );
   }, [currentRestaurantId]);

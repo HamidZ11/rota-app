@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { supabase } from "./supabase";
+import { one } from "./supabase-join";
 
 export type RestaurantRole = "manager" | "staff";
 
@@ -85,12 +86,15 @@ export function RestaurantProvider({
       }
 
       const memberships = data
-        .map((row) => ({
-          memberId: row.id,
-          restaurantId: row.restaurant?.id ?? row.restaurant_id ?? "",
-          restaurantName: row.restaurant?.name ?? "Restaurant",
-          role: row.role as RestaurantRole,
-        }))
+        .map((row) => {
+          const restaurant = one(row.restaurant);
+          return {
+            memberId: row.id,
+            restaurantId: restaurant?.id ?? row.restaurant_id ?? "",
+            restaurantName: restaurant?.name ?? "Restaurant",
+            role: row.role as RestaurantRole,
+          };
+        })
         .filter((membership) => Boolean(membership.restaurantId));
 
       setRestaurants(memberships);

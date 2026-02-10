@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserRole } from "../../lib/user-role";
 import { supabase } from "../../lib/supabase";
+import { one } from "../../lib/supabase-join";
 import { useRestaurant } from "../../lib/restaurant-context";
 
 type HolidayRequest = {
@@ -176,18 +177,21 @@ export default function HolidaysPage() {
       return;
     }
     setRequests(
-      data.map((row) => ({
-        id: row.id,
-        staffId: row.staff_id,
-        staffName: row.staff?.name ?? null,
-        startDate: row.start_date,
-        endDate: row.end_date,
-        note: row.note ?? null,
-        status: row.status,
-        createdAt: row.created_at,
-        reviewedAt: row.reviewed_at ?? null,
-        reviewedBy: row.reviewed_by ?? null,
-      }))
+      data.map((row) => {
+        const staff = one(row.staff);
+        return {
+          id: row.id,
+          staffId: row.staff_id,
+          staffName: staff?.name ?? null,
+          startDate: row.start_date,
+          endDate: row.end_date,
+          note: row.note ?? null,
+          status: row.status,
+          createdAt: row.created_at,
+          reviewedAt: row.reviewed_at ?? null,
+          reviewedBy: row.reviewed_by ?? null,
+        };
+      })
     );
   }, [currentRestaurantId]);
 
