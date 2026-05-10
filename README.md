@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weekline
 
-## Getting Started
+Restaurant rota and workforce management platform for hospitality teams.
 
-First, run the development server:
+Next.js
+React
+TypeScript
+Supabase
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Weekline is a workforce scheduling platform designed for hospitality teams. The application replaces spreadsheet-based rota management with a role-based system where managers can create weekly schedules, manage staff availability, review holiday and shift swap requests, and export rotas, while staff can access their own schedules and submit requests.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Built with Next.js App Router and Supabase, the platform uses authentication, row-level security, and a multi-tenant restaurant membership system.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Email/password authentication
+- Multi-restaurant workspace support
+- Weekly rota builder
+- Drag-and-drop shift reassignment
+- Holiday request workflow
+- Shift swap approval workflow
+- Staff workload and coverage tracking
+- PDF rota export
+- Role-based manager and staff views
+- Responsive dashboard UI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ADD SCREENSHOTS HERE
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 16 + React 19 + TypeScript |
+| Styling | Tailwind CSS 4 |
+| Backend/Data | Supabase |
+| Database | PostgreSQL |
+| Authentication | Supabase Auth |
+| Authorization | Supabase Row Level Security |
+| PDF Export | jsPDF |
+
+---
+
+## Architecture
+
+- Next.js App Router application
+- Client-side Supabase data access
+- Multi-tenant restaurant membership system
+- Role-aware navigation and workflows
+- Supabase Row Level Security policies for access control
+- Context-based restaurant workspace switching
+
+---
+
+## Core Workflows
+
+### Manager Workflow
+
+- Build and manage weekly rotas
+- Assign and edit shifts
+- Review holiday requests
+- Approve/reject swap requests
+- Monitor staffing coverage
+
+### Staff Workflow
+
+- View weekly rota
+- Submit holiday requests
+- Request shift swaps
+- View request statuses
+
+---
+
+## Local Development
+
+bash npm install npm run dev 
+
+---
+
+## Future Improvements
+
+- CI/CD pipeline
+- Automated testing
+- Calendar integrations
+- Notifications
+- Better analytics and reporting
+- Mobile optimisations
