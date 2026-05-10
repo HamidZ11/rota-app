@@ -34,27 +34,19 @@ Built with Next.js App Router and Supabase, the platform uses authentication, ro
 
 ## Screenshots
 
-## Screenshots
+<p align="center">
+  <img src="./screenshots/rota1.png" width="48%" />
+  <img src="./screenshots/rota2.png" width="48%" />
+</p>
 
-### Weekly rota management
+<p align="center">
+  <img src="./screenshots/rota3.png" width="48%" />
+  <img src="./screenshots/rota5.png" width="48%" />
+</p>
 
-<img src="./screenshots/rota1.png" width="100%" />
-
-### Holiday approval workflow
-
-<img src="./screenshots/rota2.png" width="100%" />
-
-### Manager dashboard
-
-<img src="./screenshots/rota3.png" width="100%" />
-
-### Database schema
-
-<img src="./screenshots/rota4.png" width="100%" />
-
-### Staff rota view
-
-<img src="./screenshots/rota5.png" width="100%" />
+<p align="center">
+  <img src="./screenshots/rota4.png" width="70%" />
+</p>
 
 ---
 
