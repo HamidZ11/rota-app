@@ -2,10 +2,10 @@
 
 Restaurant rota and workforce management platform for hospitality teams.
 
-Next.js
-React
-TypeScript
-Supabase
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)
+![Supabase](https://img.shields.io/badge/Supabase-Postgres-3ecf8e)
 
 ---
 
