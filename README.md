@@ -38,23 +38,23 @@ Built with Next.js App Router and Supabase, the platform uses authentication, ro
 
 ### Weekly rota management
 
-![Weekly rota](./screenshots/rota1.png)
-
-### Manager dashboard
-
-![Dashboard](./screenshots/rota2.png)
+<img src="./screenshots/rota1.png" width="100%" />
 
 ### Holiday approval workflow
 
-![Holiday requests](./screenshots/rota3.png)
+<img src="./screenshots/rota2.png" width="100%" />
 
-### Staff rota view
+### Manager dashboard
 
-![My rota](./screenshots/rota4.png)
+<img src="./screenshots/rota3.png" width="100%" />
 
 ### Database schema
 
-![Database schema](./screenshots/rota5.png)
+<img src="./screenshots/rota4.png" width="100%" />
+
+### Staff rota view
+
+<img src="./screenshots/rota5.png" width="100%" />
 
 ---
 
