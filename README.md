@@ -1,4 +1,5 @@
 # Weekline
+![CI](https://github.com/HamidZ11/weekline/actions/workflows/ci.yml/badge.svg)
 
 Restaurant rota and workforce management platform for hospitality teams.
 
